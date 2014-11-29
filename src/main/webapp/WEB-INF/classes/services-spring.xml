@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd" 
+		default-lazy-init="true" default-autowire="byName">
+
+    <!-- 启动对@Aspectj的支持 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<bean id="commonDao" class="com.wf.base.dao.CommonDaoHibernate" />
+	<bean id="commonDaoJdbc" class="com.wf.base.dao.CommonDaoJdbcImpl" />
+	<bean id="baseService" class="com.wf.base.service.BaseServiceImpl" />
+	
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="3" />
+		<property name="keepAliveSeconds" value="200" />
+		<property name="maxPoolSize" value="5" />
+		<property name="queueCapacity" value="25" />
+	</bean>
+	
+	<!-- 用户登录 -->
+	<bean id="loginAction" class="com.wf.login.action.LoginAction"  scope="prototype"></bean>
+	<bean id="loginService" class="com.wf.login.service.LoginServiceImpl"  scope="prototype"></bean>
+	
+</beans>

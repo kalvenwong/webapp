@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%-5p] %m - at %l %n" />
+		</layout>
+	</appender>
+
+	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="d:\\siantapp.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-a" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%-5p] %m - at %l %n" />
+		</layout>
+	</appender>
+
+	<logger name="org.apache">
+		<level value="WARN" />
+	</logger>
+
+
+	<logger name="net.sf.hibernate">
+		<level value="WARN" />
+	</logger>
+
+	<logger name="org.springframework">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.springframework.transaction">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="com.wf">
+		<level value="DEBUG" />
+	</logger>
+	
+	<logger name="test">
+		<level value="INFO" />
+	</logger>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>
